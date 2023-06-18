@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newstore/components/roundedbutton.dart';
 import 'package:newstore/screens/signup/signup_screen.dart';
+import 'package:newstore/screens/singin/signin_screen.dart';
 
 class LoginRegisterButtons extends StatelessWidget {
   const LoginRegisterButtons({Key? key}) : super(key: key);
@@ -18,7 +19,15 @@ class LoginRegisterButtons extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          RoundedButton(label: "Sign In", onPressed: () {}),
+          RoundedButton(
+              label: "Sign In",
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SignInScreen()),
+                    (route) => false);
+              }),
           const SizedBox(
             height: 10,
           ),
