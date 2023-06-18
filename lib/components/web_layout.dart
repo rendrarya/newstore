@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Weblayout extends StatelessWidget {
-  final Image imageWidget;
   final Widget dataWidget;
 
-  const Weblayout(
-      {super.key, required this.imageWidget, required this.dataWidget});
+  const Weblayout({super.key, required this.dataWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +13,12 @@ class Weblayout extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 300,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [imageWidget],
+                children: [],
               ),
             ),
             SizedBox(

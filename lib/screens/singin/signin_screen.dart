@@ -11,17 +11,9 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveLayout(
         webChild: Weblayout(
-          imageWidget: Image.asset(
-            "assets/tuna.jpg",
-            width: 150,
-          ),
           dataWidget: LoginForm(),
         ),
         mobileChild: MobileLayout(
-          imageWidget: Image.asset(
-            "assets/tuna.jpg",
-            width: 75,
-          ),
           dataWidget: LoginForm(),
         ));
   }

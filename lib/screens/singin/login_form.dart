@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newstore/components/roundedbutton.dart';
+import 'package:newstore/screens/forgotpass/forgotpassword_screen.dart';
+import 'package:newstore/screens/signup/signup_screen.dart';
+import 'package:newstore/screens/singin/signin_screen.dart';
 
 class LoginForm extends StatelessWidget {
   LoginForm({Key? key}) : super(key: key);
@@ -88,7 +91,14 @@ class LoginForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ForgotPasswordScreen()),
+                            (route) => false);
+                      },
                       child: const Text("Forgot Password?"),
                     )
                   ],
@@ -105,6 +115,26 @@ class LoginForm extends StatelessWidget {
                     })
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Don't have an account? "),
+              InkWell(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
+                      (route) => false);
+                },
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
           ),
         ],
       ),

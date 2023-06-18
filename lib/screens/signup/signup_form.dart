@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newstore/components/roundedbutton.dart';
+import 'package:newstore/screens/singin/signin_screen.dart';
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({Key? key}) : super(key: key);
@@ -148,13 +149,37 @@ class SignUpForm extends StatelessWidget {
                   height: 10,
                 ),
                 RoundedButton(
-                    label: "SignUp",
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
-                    }),
+                  label: "SignUp",
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {}
+                  },
+                ),
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Already have an account? "),
+              InkWell(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInScreen()),
+                      (route) => false);
+                },
+                child: const Text(
+                  "Sign In",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );

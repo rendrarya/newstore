@@ -9,21 +9,12 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(
+    return const ResponsiveLayout(
         webChild: Weblayout(
-          imageWidget: Image.asset(
-            "assets/tuna.jpg",
-            width: 250,
-            height: 250,
-          ),
-          dataWidget: const LoginRegisterButtons(),
+          dataWidget: LoginRegisterButtons(),
         ),
         mobileChild: MobileLayout(
-          imageWidet: Image.asset(
-            "assets/tuna.jpg",
-            height: 150,
-          ),
-          dataWidget: const LoginRegisterButtons(),
+          dataWidget: LoginRegisterButtons(),
         ));
   }
 }
