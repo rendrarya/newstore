@@ -33,10 +33,10 @@ class HomeScreenData extends StatelessWidget {
                 "Hello",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
               ),
-              // Text(
-              //   AuthenticationService().getUserName() ?? "",
-              //   style: const TextStyle(fontSize: 30),
-              // )
+              Text(
+                AuthenticationService().getUserName() ?? "",
+                style: const TextStyle(fontSize: 30),
+              )
             ],
           ),
           //Button Log Out
