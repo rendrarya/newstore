@@ -16,7 +16,7 @@ class LoginRegisterButtons extends StatelessWidget {
             "Welcome",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
-          Image.asset("assets/images/login.png"),
+          // Image.asset("assets/images/login.png"),
           const SizedBox(
             height: 20,
           ),

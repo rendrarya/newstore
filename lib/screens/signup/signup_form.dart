@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:newstore/components/roundedbutton.dart';
+import 'package:newstore/screens/home/home_screen.dart';
 import 'package:newstore/screens/singin/signin_screen.dart';
+import 'package:newstore/services/auth_response.dart';
+import 'package:newstore/services/auth_service.dart';
+import 'package:newstore/utils/util.dart';
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({Key? key}) : super(key: key);
@@ -151,7 +155,24 @@ class SignUpForm extends StatelessWidget {
                 RoundedButton(
                   label: "SignUp",
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      AuthenticationService()
+                          .signUpWithEmail(
+                              name: nameEditingController.text,
+                              email: emailEditingController.text,
+                              password: pwdEditingController.text)
+                          .then((authResponse) {
+                        if (authResponse.authStatus == AuthStatus.success) {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreeen()),
+                              (route) => false);
+                        } else {
+                          Util.showErrorMessage(context, authResponse.message);
+                        }
+                      });
+                    }
                   },
                 ),
               ],

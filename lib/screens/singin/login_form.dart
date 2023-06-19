@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:newstore/components/roundedbutton.dart';
 import 'package:newstore/screens/forgotpass/forgotpassword_screen.dart';
+import 'package:newstore/screens/home/home_screen.dart';
 import 'package:newstore/screens/signup/signup_screen.dart';
 import 'package:newstore/screens/singin/signin_screen.dart';
+import 'package:newstore/services/auth_response.dart';
+import 'package:newstore/services/auth_service.dart';
+import 'package:newstore/utils/util.dart';
 
 class LoginForm extends StatelessWidget {
   LoginForm({Key? key}) : super(key: key);
@@ -111,6 +115,23 @@ class LoginForm extends StatelessWidget {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         //Button Firebase
+                        AuthenticationService()
+                            .signInWithEmail(
+                                email: emailEditingController.text,
+                                password: pwdEditingController.text,
+                                name: "")
+                            .then((authResponse) {
+                          if (authResponse.authStatus == AuthStatus.success) {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HomeScreeen()),
+                                (route) => false);
+                          } else {
+                            Util.showErrorMessage(
+                                context, authResponse.message);
+                          }
+                        });
                       }
                     })
               ],

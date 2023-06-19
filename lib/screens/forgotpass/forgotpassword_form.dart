@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:newstore/components/roundedbutton.dart';
+import 'package:newstore/screens/signup/signup_screen.dart';
+import 'package:newstore/screens/singin/signin_screen.dart';
+import 'package:newstore/services/auth_response.dart';
+import 'package:newstore/services/auth_service.dart';
+import 'package:newstore/utils/util.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
   ForgotPasswordForm({Key? key}) : super(key: key);
@@ -59,9 +64,62 @@ class ForgotPasswordForm extends StatelessWidget {
                     label: "Reset Password",
                     onPressed: () {
                       //Firebase
+                      AuthenticationService()
+                          .resetPassword(email: emailEditingController.text)
+                          .then((authResponse) {
+                        if (authResponse.authStatus == AuthStatus.success) {
+                          Util.showSuccessMessage(
+                              context, "Email has been sent");
+                        } else {
+                          Util.showErrorMessage(context, authResponse.message);
+                        }
+                      });
                     })
               ],
             ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Already have an account? "),
+              InkWell(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInScreen()),
+                      (route) => false);
+                },
+                child: const Text(
+                  "Sign In",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Don't have an account? "),
+              InkWell(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
+                      (route) => false);
+                },
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
           ),
         ],
       ),
