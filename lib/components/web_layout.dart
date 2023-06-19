@@ -26,7 +26,7 @@ class Weblayout extends StatelessWidget {
               child: dataWidget,
             )
           ],
-        )
+        ),
       ],
     );
   }

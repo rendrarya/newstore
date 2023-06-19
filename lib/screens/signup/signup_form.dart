@@ -166,7 +166,7 @@ class SignUpForm extends StatelessWidget {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeScreeen()),
+                                  builder: (context) => const HomeScreen()),
                               (route) => false);
                         } else {
                           Util.showErrorMessage(context, authResponse.message);
